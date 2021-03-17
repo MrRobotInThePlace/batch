@@ -31,7 +31,7 @@ import java.util.*;
 
 @Configuration
 @EnableBatchProcessing
-public class CommunesDBExportBatch<AggregateItem> {
+public class CommunesDBExportBatch<Commune> {
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
