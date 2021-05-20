@@ -13,8 +13,15 @@ import org.springframework.batch.core.annotation.AfterStep;
 import org.springframework.batch.core.annotation.BeforeProcess;
 import org.springframework.batch.core.annotation.OnProcessError;
 import org.springframework.batch.item.ItemProcessor;
+
+
+//  C'est une interface prenant deux types en paramètres,
+//  le premier correspond à la classe d'entrée (la même que l'ItemReader), => ici correspondant au format "Commune CSV"
+//  le second à la classe de sortie (la même que l'ItemWriter) => ici correspondant au format "Commune"
 public class CommuneCSVItemProcessor implements ItemProcessor<CommuneCSV, Commune> {
+
     private Integer nbCommunesWithoutCoordinates = 0;
+
     @Override
     public Commune process(CommuneCSV item) throws Exception {
         Commune commune = new Commune();
@@ -41,6 +48,7 @@ public class CommuneCSVItemProcessor implements ItemProcessor<CommuneCSV, Commun
         }
         return commune;
     }
+
     private void validateCommuneCSV(CommuneCSV item) throws CommuneCSVException {
         //Contrôler Code INSEE 5 chiffres
         if(item.getCodeInsee() != null && !item.getCodeInsee().matches("^[0-9AB]{5}$")){
@@ -61,7 +69,9 @@ public class CommuneCSVItemProcessor implements ItemProcessor<CommuneCSV, Commun
             throw new CommuneCSVException("Les coordonnées GPS sont incorrectes ! " + item.getCoordonneesGps());
         }
     }
+
     Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @AfterStep
     public ExitStatus afterStep(StepExecution stepExecution) {
         logger.info("After Step CSV Import");

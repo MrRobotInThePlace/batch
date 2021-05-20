@@ -1,4 +1,5 @@
-Total codes postaux : 1
+Total codes postaux : 2
 01300 - 01006 - Saint Ambleon : 45,74950 5,59432
 01300 - 01454 - Virignin : 45,72674 5,71282
-Total communes : 2
+07460 - 07024 - Banne : 44,36078 4,15114
+Total communes : 3
